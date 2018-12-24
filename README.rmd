@@ -12,7 +12,7 @@ The program below wrangles data using R code. The data is from the weather stati
 
 ```{r}
     library(tidyverse)
-    sfDaily <- read_csv("weatherData/sf1921to2017GhcnDaily.csv")
+    sfDaily <- read_csv("data/sf1921to2017GhcnDaily.csv")
     sfDaily <- sfDaily[,colSums(is.na(sfDaily))<nrow(sfDaily)]
     sfDaily$YEAR <- substring(sfDaily$DATE,1,4)
     sfYearMax <- sfDaily %>%
