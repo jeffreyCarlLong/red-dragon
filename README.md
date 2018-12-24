@@ -1,10 +1,6 @@
-# red-dragon
-
 ## San Francisco Yearly Average of Daily Max Temp 
 
-For Daily Weather Data at Station USW00023272
-
-From 1921 to 2017 
+For Daily Weather Data at Station USW00023272 From 1921 to 2017 
 
 ![SF Yearly Max Temp From 1921 to 2017 From Daily Weather Data at Station USW00023272](sfYealyMaxDailyTemp.png)
 
@@ -12,17 +8,14 @@ The program below wrangles data using R code. The data is from the weather stati
 
 ```{r}
     library(tidyverse)
-## Loading tidyverse: ggplot2
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-## Loading tidyverse: dplyr
-## Warning: package 'dplyr' was built under R version 3.4.2
-## Conflicts with tidy packages ----------------------------------------------
-## filter(): dplyr, stats
-## lag():    dplyr, stats
-    sfDaily <- read_csv("weatherData/sf1921to2017GhcnDaily.csv")
+    sfDaily <- read_csv("data/sf1921to2017GhcnDaily.csv")
+    sfDaily <- sfDaily[,colSums(is.na(sfDaily))<nrow(sfDaily)]
+    sfDaily$YEAR <- substring(sfDaily$DATE,1,4)
+    sfYearMax <- sfDaily %>%
+        group_by(sfDaily$YEAR) %>%
+        summarise((sfDaily = mean(TMAX)))
+    plot(sfYearMax)
+    
 ## Parsed with column specification:
 ## cols(
 ##   .default = col_character(),
@@ -41,14 +34,7 @@ The program below wrangles data using R code. The data is from the weather stati
 ##   WT16 = col_integer(),
 ##   WT18 = col_integer()
 ## )
-## See spec(...) for full column specifications.
-        #Checking if any columns have just NAs. None do. So none are removed.
-    sfDaily <- sfDaily[,colSums(is.na(sfDaily))<nrow(sfDaily)]
-    sfDaily$YEAR <- substring(sfDaily$DATE,1,4)
-    sfYearMax <- sfDaily %>%
-        group_by(sfDaily$YEAR) %>%
-        summarise((sfDaily = mean(TMAX)))
-    plot(sfYearMax)
+
 ```
 
 MIT License
