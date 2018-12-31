@@ -39,7 +39,7 @@ The program below wrangles data using R code. The data is from the weather stati
 
 MIT License
 
-Copyright (c) 2017 Jeffrey Long
+Copyright (c) 2019 Jeffrey Long
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
