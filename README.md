@@ -37,7 +37,7 @@ The program below wrangles data using R code. The data is from the weather stati
 
 ```
 
-MIT License
+### MIT License
 
 Copyright (c) 2019 Jeffrey Long
 
